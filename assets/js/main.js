@@ -81,15 +81,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // ==================== Form Validation ====================
 
 /**
- * Basic form validation for contact form
+ * Form validation and submission handling for Formspree
+ * Form submits to: https://formspree.io/f/mdkrqyja
  */
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.querySelector('.contact-form');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             // Get form values
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
@@ -97,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Basic validation
             if (!name || !email || !message) {
+                e.preventDefault();
                 alert('Please fill in all required fields.');
                 return;
             }
@@ -104,14 +104,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
+                e.preventDefault();
                 alert('Please enter a valid email address.');
                 return;
             }
             
-            // If validation passes, show success message
-            // In production, this would submit to a backend
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
+            // If validation passes, form will submit to Formspree
+            // Formspree will handle the actual email delivery
+            // User will see Formspree's success page
         });
     }
 });
