@@ -1,8 +1,42 @@
 /**
  * Futuresight Analytics Limited - Main JavaScript
  * Author: Futuresight Analytics Limited
- * Version: 1.0.0
+ * Version: 2.0.0 - Enhanced with Advanced Interactive Features
  */
+
+// ==================== Page Loading Animation ====================
+
+window.addEventListener('load', function() {
+    const loader = document.querySelector('.page-loader');
+    if (loader) {
+        setTimeout(() => {
+            loader.classList.add('hidden');
+            document.body.classList.remove('loading');
+        }, 800);
+    }
+});
+
+// ==================== Scroll Progress Indicator ====================
+
+window.addEventListener('scroll', function() {
+    const scrollProgress = document.querySelector('.scroll-progress');
+    if (scrollProgress) {
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        scrollProgress.style.width = scrolled + '%';
+    }
+});
+
+// ==================== Header Scroll Effect ====================
+
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
 
 // ==================== Mobile Menu Toggle ====================
 
@@ -82,36 +116,205 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /**
  * Form validation and submission handling for Formspree
- * Form submits to: https://formspree.io/f/mdkrqyja
+// ==================== Section Scroll Animations ====================
+
+/**
+ * Animate sections when they come into view
  */
 document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.querySelector('.contact-form');
+    const sections = document.querySelectorAll('section');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            // Get form values
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            // Basic validation
-            if (!name || !email || !message) {
-                e.preventDefault();
-                alert('Please fill in all required fields.');
-                return;
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
             }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                e.preventDefault();
-                alert('Please enter a valid email address.');
-                return;
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+});
+
+// ==================== Card Animations ====================
+
+/**
+ * Add staggered fade-in animation to cards
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const cardObserver = new IntersectionObserver(function(entries) {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100);
             }
+        });
+    }, observerOptions);
+    
+    // Observe all animated elements
+    const animatedElements = document.querySelectorAll('.service-card, .case-card, .testimonial, .step, .value-item, .tech-category');
+    
+    animatedElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        cardObserver.observe(element);
+    });
+});
+
+// ==================== Animated Counter ====================
+
+/**
+ * Animate numbers counting up
+ */
+function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    
+    const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+            element.textContent = target + '+';
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(start);
+        }
+    }, 16);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    if (statNumbers.length > 0) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.dataset.count);
+                    animateCounter(entry.target, target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statNumbers.forEach(stat => statsObserver.observe(stat));
+    }
+});
+
+// ==================== Typing Effect ====================
+
+/**
+ * Typing animation for hero headline
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const typingElement = document.querySelector('.typing-text');
+    
+    if (typingElement) {
+        const text = typingElement.textContent;
+        typingElement.textContent = '';
+        let index = 0;
+        
+        function type() {
+            if (index < text.length) {
+                typingElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, 50);
+            }
+        }
+        
+        setTimeout(type, 500);
+    }
+});
+
+// ==================== Back to Top & Floating CTA ====================
+
+/**
+ * Show/hide back to top button and floating CTA
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.querySelector('.back-to-top');
+    const floatingCTA = document.querySelector('.floating-cta');
+    
+    window.addEventListener('scroll', () => {
+        // Back to top button
+        if (backToTopButton) {
+            if (window.scrollY > 500) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        }
+        
+        // Floating CTA - show after scrolling past hero
+        if (floatingCTA) {
+            const heroHeight = document.querySelector('.hero')?.offsetHeight || 600;
+            const contactSection = document.querySelector('#contact');
+            const contactOffset = contactSection?.offsetTop || document.body.scrollHeight;
             
-            // If validation passes, form will submit to Formspree
-            // Formspree will handle the actual email delivery
-            // User will see Formspree's success page
+            // Show after hero, hide when reaching contact section
+            if (window.scrollY > heroHeight && window.scrollY < (contactOffset - 200)) {
+                floatingCTA.classList.add('visible');
+            } else {
+                floatingCTA.classList.remove('visible');
+            }
+        }
+    });
+    
+    if (backToTopButton) {
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
+
+// ==================== Parallax Effect ====================
+
+/**
+ * Subtle parallax effect on hero section
+ */
+window.addEventListener('scroll', function() {
+    const hero = document.querySelector('.hero');
+    if (hero && window.innerWidth > 768) {
+        const scrolled = window.scrollY;
+        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+        hero.style.opacity = 1 - (scrolled * 0.001);
+    }
+});
+
+// ==================== Lazy Loading Images ====================
+
+/**
+ * Lazy load images for better performance
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+    
+    images.forEach(img => imageObserver.observe(img));
+});         // User will see Formspree's success page
         });
     }
 });
