@@ -1,0 +1,10 @@
+# robots.txt for Futuresight Analytics Limited
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://raunak-renge.github.io/futuresight-analytics-ltd-website/sitemap.xml
+
+# Crawl delay (optional - be respectful to search engines)
+Crawl-delay: 10
