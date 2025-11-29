@@ -45,7 +45,11 @@ window.addEventListener('scroll', function() {
  */
 function toggleMenu() {
     const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
+    const toggleButton = document.querySelector('.mobile-menu-toggle');
+    const isOpen = navLinks.classList.toggle('active');
+    if (toggleButton) {
+        toggleButton.setAttribute('aria-expanded', isOpen.toString());
+    }
 }
 
 // ==================== Navigation Event Listeners ====================
@@ -62,6 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', () => {
             const navLinksElement = document.getElementById('navLinks');
             navLinksElement.classList.remove('active');
+            const toggleButton = document.querySelector('.mobile-menu-toggle');
+            if (toggleButton) {
+                toggleButton.setAttribute('aria-expanded', 'false');
+            }
         });
     });
     
@@ -73,6 +81,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!nav.contains(event.target) && navLinksElement.classList.contains('active')) {
             navLinksElement.classList.remove('active');
+            if (menuToggle) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
         }
     });
 });
@@ -314,7 +325,112 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     images.forEach(img => imageObserver.observe(img));
-});         // User will see Formspree's success page
+});
+
+// ==================== Enhanced Form Validation & Submission ====================
+
+/**
+ * Advanced email validation and form handling
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    const emailInput = document.getElementById('email');
+    const nameInput = document.getElementById('name');
+    const messageInput = document.getElementById('message');
+    const submitBtn = document.getElementById('submit-btn');
+    const successMsg = document.getElementById('form-success');
+    const errorMsg = document.getElementById('form-error');
+    
+    // Check if form was just submitted (redirect from Formspree)
+    if (window.location.hash === '#form-submitted') {
+        successMsg.classList.add('visible');
+        setTimeout(() => {
+            // Scroll to success message
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Clear hash after 3 seconds and hide message after 10 seconds
+            setTimeout(() => {
+                window.history.replaceState(null, null, ' ');
+            }, 3000);
+            setTimeout(() => {
+                successMsg.classList.remove('visible');
+            }, 10000);
+        }, 300);
+    }
+    
+    // Real-time email validation
+    if (emailInput) {
+        emailInput.addEventListener('blur', function() {
+            validateEmail(this);
+        });
+        
+        emailInput.addEventListener('input', function() {
+            if (this.classList.contains('invalid')) {
+                validateEmail(this);
+            }
+        });
+    }
+    
+    // Validate email format
+    function validateEmail(input) {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const value = input.value.trim();
+        
+        if (value === '') {
+            input.classList.remove('valid', 'invalid');
+            return false;
+        }
+        
+        if (emailRegex.test(value)) {
+            input.classList.remove('invalid');
+            input.classList.add('valid');
+            errorMsg.classList.remove('visible');
+            return true;
+        } else {
+            input.classList.remove('valid');
+            input.classList.add('invalid');
+            return false;
+        }
+    }
+    
+    // Form submission handling
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            // Clear previous messages
+            errorMsg.classList.remove('visible');
+            successMsg.classList.remove('visible');
+            
+            // Validate email before submission
+            if (!validateEmail(emailInput)) {
+                e.preventDefault();
+                errorMsg.classList.add('visible');
+                emailInput.focus();
+                return false;
+            }
+            
+            // Validate name
+            if (nameInput.value.trim().length < 2) {
+                e.preventDefault();
+                errorMsg.textContent = '⚠️ Please enter your full name.';
+                errorMsg.classList.add('visible');
+                nameInput.focus();
+                return false;
+            }
+            
+            // Validate message
+            if (messageInput.value.trim().length < 10) {
+                e.preventDefault();
+                errorMsg.textContent = '⚠️ Please provide more details about your data challenges.';
+                errorMsg.classList.add('visible');
+                messageInput.focus();
+                return false;
+            }
+            
+            // Show loading state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Form will submit normally to Formspree
+            // Formspree will redirect back with #form-submitted hash
         });
     }
 });

@@ -48,7 +48,7 @@
     }
     </script>
 </head>
-<body class="loading">
+<body class="loading" id="top">
     <!-- Page Loader -->
     <div class="page-loader">
         <div class="loader-content">
@@ -62,9 +62,9 @@
     
     <!-- Header & Navigation -->
     <header>
-        <nav>
-            <div class="logo">Futuresight Analytics</div>
-            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav class="primary-nav" aria-label="Main navigation">
+            <a class="logo" href="#top">Futuresight Analytics</a>
+            <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
@@ -95,6 +95,22 @@
             
             <!-- Social Proof Stats -->
             <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">12+</div>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <span class="stat-label">Client Satisfaction</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Us Section -->
     <section id="about">
         <h2>Why Leading Companies Choose Futuresight Analytics</h2>
@@ -102,7 +118,8 @@
             <p style="font-size: 1.3rem; text-align: center; color: var(--text-primary); margin-bottom: 3rem;">
                 <strong>We don't just deliver projects—we transform how businesses compete with data.</strong><br>
                 Ireland-based with global expertise, we combine 12+ years of enterprise-grade engineering with cutting-edge research to deliver results that matter.
-            </p>    <span class="stat-label">Projects Delivered</span>
+            </p>
+            
             <h3>🎯 Battle-Tested Enterprise Expertise</h3>
             <p>
                 <strong>12+ years delivering mission-critical solutions</strong> for financial services, technology companies, media organizations, and regulated industries across Europe. We've built data platforms processing billions of records, automated complex reporting workflows, and delivered analytics that drive millions in revenue.
@@ -110,69 +127,29 @@
             <p>
                 Our expertise spans the entire data stack: <strong>Snowflake, AWS, SQL Server, Teradata, Oracle</strong> for data platforms | <strong>Informatica IICS & PowerCenter</strong> for ETL/ELT | <strong>Tableau, Power BI, Grafana</strong> for visualization. We don't just implement tools—we architect solutions that scale.
             </p>
-    </section>
+            
             <h3>🚀 Research-Backed Innovation</h3>
             <p>
                 <strong>What makes us different?</strong> Our lead AI researcher holds a <strong>PhD in Computer Science</strong> with published research in machine learning, deep learning, signal processing, and multimodal AI. We bring academic rigor to business problems, translating cutting-edge research into practical solutions that create competitive advantages—whether it's predictive models, anomaly detection, or audio-visual AI for media companies.
-            </p>ss="trust-badge">
-            <span>✓</span> Ireland-Based
+            </p>
+            
             <h3>🎓 Knowledge Transfer That Sticks</h3>
             <p>
                 We've <strong>taught university-level courses</strong> and mentored dozens of professionals. This means we don't just deliver solutions and disappear—<strong>we train your team to own, maintain, and evolve what we build.</strong> Clear documentation, hands-on training, and ongoing support ensure lasting value.
             </p>
-        <div class="trust-badge">
-            <span>✓</span> Enterprise-Grade Security
-        </div>
-        <div class="trust-badge">
-            <span>✓</span> Proven ROI
-        </div>
-        <div class="trust-badge">
-            <span>✓</span> 24/7 Support Available
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about">
-        <h2>Trusted Data & AI Partners, Based in Ireland</h2>
-        <div class="about-content">
-            <p>
-                Futuresight Analytics Limited is a specialist data and AI consultancy helping organisations worldwide turn complexity into clarity. Based in Ireland with global project experience, we bring together the best of enterprise data engineering and cutting-edge research.
-            </p>
             
-            <h3>Our Expertise</h3>
-            <p>
-                With over 12 years of hands-on experience in data warehousing, business intelligence, and analytics, our team has delivered mission-critical solutions for financial services, technology companies, media organisations, and regulated industries across Europe and beyond.
-            </p>
-            <p>
-                We excel at large-scale ETL/ELT pipelines, performance optimisation, and building robust data platforms on Snowflake, AWS, SQL Server, Teradata, and Oracle. Our data visualisation work transforms complex datasets into executive-friendly dashboards using Tableau, Power BI, and Grafana.
-            </p>
-            
-            <h3>Innovation Through Research</h3>
-            <p>
-                What sets us apart is our deep research background in machine learning, deep learning, signal processing, and multimodal AI. Our lead AI researcher holds a PhD in Computer Science with published work in audio-visual synchronisation and human-machine interaction. This research foundation allows us to bring innovative, practical AI solutions to real business problems.
-            </p>
-            
-            <h3>Teaching & Communication</h3>
-            <p>
-                We've taught university-level courses in machine learning, Python, and data science, and have mentored dozens of analysts and engineers. This teaching experience means we don't just deliver solutions—we empower your team to own and evolve them.
-            </p>
-            
-            <div class="values-grid">
-                <div class="value-item">
-                    <h4>Clarity</h4>
-                    <p>We explain complex topics in plain language</p>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <span>✓</span> Ireland-Based
                 </div>
-                <div class="value-item">
-                    <h4>Integrity</h4>
-                    <p>We recommend what's right for you, not what's easiest for us</p>
+                <div class="trust-badge">
+                    <span>✓</span> Enterprise-Grade Security
                 </div>
-                <div class="value-item">
-                    <h4>Pragmatism</h4>
-                    <p>We balance best practices with real-world constraints</p>
+                <div class="trust-badge">
+                    <span>✓</span> Proven ROI
                 </div>
-                <div class="value-item">
-                    <h4>Curiosity</h4>
-                    <p>We stay at the forefront of data and AI innovation</p>
+                <div class="trust-badge">
+                    <span>✓</span> 24/7 Support Available
                 </div>
             </div>
         </div>
@@ -379,6 +356,17 @@
                 <h4>Programming & ML</h4>
                 <ul class="tech-list">
                     <li>Python (pandas, scikit-learn, TensorFlow, PyTorch)</li>
+                    <li>R (statistical computing)</li>
+                    <li>SQL (advanced query optimization)</li>
+                    <li>Git & version control</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <h2>What Our Clients Say</h2>
         <div class="testimonials-grid">
             <div class="testimonial">
                 <div class="testimonial-rating">★★★★★</div>
@@ -395,6 +383,8 @@
                 <p>"What stood out was their ability to combine deep technical expertise with genuine business understanding. They're not just developers—they're strategic partners who care about the outcomes."</p>
                 <p class="testimonial-author">— VP of Product, Technology Scale-up</p>
             </div>
+        </div>
+    </section>
     <!-- Contact Section -->
     <section id="contact">
         <h2>Ready to Transform Your Data Into a Competitive Asset?</h2>
@@ -406,17 +396,27 @@
                 <li>✓ Identify quick wins in your current data infrastructure</li>
                 <li>✓ Benchmark your analytics maturity against industry standards</li>
                 <li>✓ Get a roadmap for scaling your data capabilities</li>
-            <form class="contact-form" action="https://formspree.io/f/mdkrqyja" method="POST">
+            </ul>
+            
+            <form class="contact-form" id="contact-form" action="https://formspree.io/f/mdkrqyja" method="POST">
+                <!-- Hidden redirect field -->
+                <input type="hidden" name="_next" value="https://raunak-renge.github.io/futuresight-analytics-ltd-website/#form-submitted">
+                <input type="hidden" name="_subject" value="New consultation request from website">
+                
                 <div class="form-success" id="form-success">
-                    ✓ Thank you! We'll be in touch within 24 hours.
+                    ✓ Thank you! Your message has been sent successfully. We'll contact you within 24 hours.
+                </div>
+                <div class="form-error" id="form-error">
+                    ⚠️ Please check your email address and try again.
                 </div>
                 <div class="form-group">
                     <label for="name">Your Name *</label>
-                    <input type="text" id="name" name="name" placeholder="John Smith" required>
+                    <input type="text" id="name" name="name" placeholder="John Smith" required minlength="2">
                 </div>
                 <div class="form-group">
                     <label for="email">Work Email *</label>
-                    <input type="email" id="email" name="email" placeholder="john.smith@company.com" required>
+                    <input type="email" id="email" name="email" placeholder="john.smith@company.com" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                    <small class="field-hint">Please enter a valid email address</small>
                 </div>
                 <div class="form-group">
                     <label for="company">Company Name</label>
@@ -424,56 +424,12 @@
                 </div>
                 <div class="form-group">
                     <label for="message">What are your biggest data challenges? *</label>
-                    <textarea id="message" name="message" placeholder="Tell us about your current situation, what you're trying to achieve, and any specific pain points..." required></textarea>
+                    <textarea id="message" name="message" placeholder="Tell us about your current situation, what you're trying to achieve, and any specific pain points..." required minlength="10"></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Get Your Free Strategy Call →</button>
+                <button type="submit" class="submit-btn" id="submit-btn">Get Your Free Strategy Call →</button>
                 <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
                     🔒 Your information is secure and will never be shared. Average response time: &lt;4 hours.
                 </p>
-            </form>ass="testimonial">
-                <p>"The team's ability to translate complex data challenges into clear, actionable solutions was impressive. They didn't just deliver what we asked for—they helped us understand what we actually needed."</p>
-                <p class="testimonial-author">— Head of Data Analytics, Financial Services</p>
-            </div>
-            <div class="testimonial">
-                <p>"We were stuck with legacy ETL processes that were holding us back. The modernisation project was delivered on time, and the performance improvements exceeded our expectations. The knowledge transfer was excellent too."</p>
-                <p class="testimonial-author">— IT Director, Multinational Corporation</p>
-            </div>
-            <div class="testimonial">
-                <p>"What stood out was their ability to combine deep technical expertise with genuine business understanding. They're not just developers—they're strategic partners who care about the outcomes."</p>
-                <p class="testimonial-author">— VP of Product, Technology Scale-up</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Let's Talk About Your Data Challenges</h2>
-        <div class="contact-container">
-            <p style="text-align: center; margin-bottom: 2rem;">
-                Whether you're looking to modernise your data infrastructure, automate reporting, or explore AI opportunities, we'd love to hear from you. Book a free consultation to discuss how we can help.
-            </p>
-            <p style="text-align: center; margin-bottom: 3rem; color: var(--text-secondary);">
-                We schedule introductory calls across Irish and European time zones.
-            </p>
-            
-            <form class="contact-form" action="https://formspree.io/f/mdkrqyja" method="POST">
-                <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="company">
-                </div>
-                <div class="form-group">
-                    <label for="message">Tell us about your data challenges *</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
             </form>
         </div>
     </section>
@@ -514,9 +470,6 @@
         </div>
     </footer>
 
-    <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
     <!-- Floating CTA Button -->
     <div class="floating-cta">
         <a href="#contact" class="btn btn-primary">📞 Get Free Consultation</a>
@@ -533,20 +486,5 @@
         // Simple analytics placeholder - replace with your actual analytics
         console.log('Page loaded successfully');
     </script>
-</body>
-</html> // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('active');
-            });
-        });
-    </script>
-</body>
-</html>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
