@@ -435,6 +435,11 @@
                     🔒 Your information is secure and will never be shared. Average response time: &lt;4 hours.
                 </p>
             </form>
+            <div class="calendly-wrapper" id="schedule-call">
+                <!-- Calendly inline widget begin -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/raunakrenge/30min" style="min-width:320px;height:700px;"></div>
+                <!-- Calendly inline widget end -->
+            </div>
         </div>
     </section>
 
@@ -476,11 +481,17 @@
 
     <!-- Floating CTA Buttons -->
     <div class="floating-cta" aria-label="Quick contact actions">
-        <a href="tel:+353899776644" class="btn cta-btn">
-            📞 Call +353 899 77 66 44
+        <a href="tel:+353899776644" class="floating-btn call" aria-label="Call us">
+            📞
+            <span class="sr-only">Call us</span>
         </a>
-        <a href="https://wa.me/353899776644" class="btn cta-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-            💬 WhatsApp Us
+        <a href="https://wa.me/353899776644" class="floating-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+            💬
+            <span class="sr-only">WhatsApp us</span>
+        </a>
+        <a href="#schedule-call" class="floating-btn calendly" aria-label="Schedule via Calendly">
+            🗓️
+            <span class="sr-only">Schedule a meeting</span>
         </a>
     </div>
     
@@ -489,6 +500,7 @@
 
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
     
     <!-- Performance: Defer non-critical scripts -->
     <script defer>
