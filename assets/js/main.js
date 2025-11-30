@@ -189,14 +189,14 @@ document.addEventListener('DOMContentLoaded', function() {
 /**
  * Animate numbers counting up
  */
-function animateCounter(element, target, duration = 2000) {
+function animateCounter(element, target, suffix = '+', duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
     
     const timer = setInterval(() => {
         start += increment;
         if (start >= target) {
-            element.textContent = target + '+';
+            element.textContent = target + suffix;
             clearInterval(timer);
         } else {
             element.textContent = Math.floor(start);
@@ -211,8 +211,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.dataset.count);
-                    animateCounter(entry.target, target);
+                    const target = parseInt(entry.target.dataset.count, 10) || 0;
+                    const suffix = entry.target.dataset.suffix ?? '+';
+                    animateCounter(entry.target, target, suffix);
                     statsObserver.unobserve(entry.target);
                 }
             });
