@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title desc">
+  <title id="title">Futuresight Analytics Logo</title>
+  <desc id="desc">Circular monogram with stylised blue and grey swooshes forming the letter F</desc>
+  <defs>
+    <linearGradient id="outerRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A62FF"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="upperStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1D4ED8"/>
+      <stop offset="100%" stop-color="#2EC9F3"/>
+    </linearGradient>
+    <linearGradient id="lowerStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8A8F99"/>
+      <stop offset="100%" stop-color="#444A53"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="none" stroke="url(#outerRing)" stroke-width="16" stroke-linecap="round"/>
+  <path d="M34 94c10-37 51-66 101-66 18 0 37 4 54 11l-19 28c-13-4-25-6-37-6-28 0-52 11-63 33z" fill="url(#upperStroke)"/>
+  <path d="M166 106c-10 36-51 63-100 63-18 0-37-4-54-10l19-28c13 3 25 5 37 5 26 0 50-9 61-29l-38 1c-11 0-21-8-21-19 0-10 8-18 19-18h91z" fill="url(#lowerStroke)"/>
+</svg>
